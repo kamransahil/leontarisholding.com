@@ -76,7 +76,7 @@ if(isset($_POST['submit'])) {
                 <div class="col full">
 
                     <div class="logo">
-                        <a href="#"><img alt="" src="images/logo1.png"></a>
+                        <a href="#"><img alt="" src="images/logo.png"></a>
                     </div>
 
                     <nav id="nav-wrap">
