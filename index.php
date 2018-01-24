@@ -1,22 +1,31 @@
 <?php
+error_reporting(0);
+if(isset($_POST['submit'])) {
+	$senderName = $_POST['contactName'];
+	$email = $_POST['contactEmail'];
+	$subject = $_POST['contactSubject'];
+	$comment = $_POST['contactMessage'];
 
-include './form_process.php';
-//error_reporting(0);
-//if(isset($_POST['submit'])) {
-//    $recipient='sahil.sk915@gmail.com';
-//    $subject=$_POST["contactSubject"];
-//    $sender=$_POST["contactName"];
-//    $senderEmail=$_POST["contactEmail"];
-//    $message=$_POST["contactMessage"];
-////echo $subject;
-//    $mailBody = "Name: $sender\nEmail: $senderEmail\nMessage:\n$message";
-//$headers = "From : $recipient\n";
-//$headers .= "Reply-to : $senderEmail\n";
-//
-//    mail($recipient, $subject, $mailBody, $headers);
-////    sleep(1);
-//    $thankYou="<p>Thank you for your message! We will get back to you as soon as possible.</p>";
-//}
+	$senderName = trim($senderName);
+	$email = trim($email);
+	$message = trim($comment);
+	$sendingMessage = "";
+
+	if($senderName != "" && $email != "" && $message != "") {
+		if(!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+//			$message = wordwrap($message, 300);
+			$message = $senderName.'<br />'.$subject.'<br /><br />'.$message;
+			//mail("info@kernelinnovation.com",$senderName,$message,"From:$email\n");
+			mail("info@kernelinnovation.com",$senderName,$message,"From:$email\n");
+			$sendingMessage = "Your message has been sent successfully.";
+		} else {
+			$sendingMessage = "Your email address is incorrect. please check and retry.";
+		}
+	} else {
+		$sendingMessage = "Empty message cannot be sent.";
+	}
+
+}
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 8 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -505,13 +514,13 @@ include './form_process.php';
                 <div class="col g-7">
 
                     <!-- form -->
-                    <form method="post" id="contact" action="<?= $_SERVER['PHP_SELF'];?>">
+                    <form method="post" id="contact" action="">
                         <fieldset>
 
                             <div style="margin-bottom: 30px;">
                                 <label for="contactName">Name<span class="required">*</span></label>
                                 <input class="form-control" placeholder="input your name" name="contactName"  type="text" id="contactName" size="35" value="<?= $name?>" />
-                                <span class="error"><?= $name_error ?></span>
+                                <span class="error"></span>
                             </div>
 
                             <div style="margin-bottom: 30px;">
@@ -533,7 +542,11 @@ include './form_process.php';
                             </div>
                             
                             <div style="margin-bottom: 30px;">
-                                <span class="success"><?= $success?></span>
+                                <span style="color: #000"><?php
+					if ($sendingMessage != "") {
+						echo "<h2 style='color: #000;'>".$sendingMessage."</h2>";
+					}
+					?></span>
                                 <button type="submit" class="submit" id="submit" name="submit" >Submit</button>
                                 
                                 <span id="image-loader">
