@@ -16,7 +16,7 @@ if(isset($_POST['submit'])) {
 //			$message = wordwrap($message, 300);
 			$message = $senderName.'<br />'.$subject.'<br /><br />'.$message;
 			//mail("info@kernelinnovation.com",$senderName,$message,"From:$email\n");
-			mail("info@kernelinnovation.com",$senderName,$message,"From:$email\n");
+			mail("leontarisholding@gmail.com",$senderName,$message,"From:$email\n");
 			$sendingMessage = "Thank you for your message! We will get back to you as soon as possible.";
 		} else {
 			$sendingMessage = "Your email address is incorrect. please check and retry.";
@@ -526,26 +526,26 @@ if(isset($_POST['submit'])) {
                             <div style="margin-bottom: 30px;">
                                 <label for="contactEmail">Email <span class="required">*</span></label>
                                 <input class="form-control" name="contactEmail"  type="email" placeholder="input your email" id="contactEmail" size="35" value="<?= $email?>" />
-                                <span class="error"><?= $email_error ?></span>
+                                <span class="error"></span>
                             </div>
 
                             <div style="margin-bottom: 30px;">
                                 <label for="contactSubject">Subject</label>
                                 <input class="form-control" name="contactSubject"  type="text" placeholder="input subject" id="contactSubject" size="35" value="<?= $subject?>" />
-                                <span  class="error"><?= $subject_error ?></span>
+                                <span  class="error"></span>
                             </div>
 
                             <div style="margin-bottom: 30px;">
                                 <label  for="contactMessage">Message  <span class="required">*</span></label>
                                 <textarea class="form-control" name="contactMessage" placeholder="description" id="contactMessage" rows="10" cols="50" ></textarea>
-                                <span style="margin-left: 120px;" class="error"><?= $message_error ?></span>
+                                <span style="margin-left: 120px;" class="error"></span>
                             </div>
                             
                             <div style="margin-bottom: 30px;">
                                 <span style="color: #000"><?php
 					if ($sendingMessage != "") {
 						echo "<h2 style='color: #000;'>".$sendingMessage."</h2>";
-					}
+					}    
 					?></span>
                                 <button type="submit" class="submit" id="submit" name="submit" >Submit</button>
                                 
