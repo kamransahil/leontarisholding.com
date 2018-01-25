@@ -17,7 +17,7 @@ if(isset($_POST['submit'])) {
 			$message = $senderName.'<br />'.$subject.'<br /><br />'.$message;
 			//mail("info@kernelinnovation.com",$senderName,$message,"From:$email\n");
 			mail("info@kernelinnovation.com",$senderName,$message,"From:$email\n");
-			$sendingMessage = "Your message has been sent successfully.";
+			$sendingMessage = "Thank you for your message! We will get back to you as soon as possible.";
 		} else {
 			$sendingMessage = "Your email address is incorrect. please check and retry.";
 		}
